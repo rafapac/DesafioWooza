@@ -7,12 +7,12 @@ namespace DesafioWooza.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class DesafioWooza : ControllerBase
+    public class PlanoTelefoniaController : ControllerBase
     {
 
-        private readonly ILogger<DesafioWooza> _logger;
+        private readonly ILogger<PlanoTelefoniaController> _logger;
 
-        public DesafioWooza(ILogger<DesafioWooza> logger)
+        public PlanoTelefoniaController(ILogger<PlanoTelefoniaController> logger)
         {
             _logger = logger;
         }

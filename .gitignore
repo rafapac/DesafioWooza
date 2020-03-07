@@ -3,3 +3,7 @@
 ################################################################################
 
 /.vs/DesafioWooza
+/DesafioWooza/bin
+/DesafioWooza/obj
+/DesafioWoozaTest/obj
+/DesafioWoozaTest/bin

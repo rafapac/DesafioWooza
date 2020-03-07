@@ -15,6 +15,7 @@ namespace DesafioWooza.Models
         public int FranquiaInternet { get; set; }
         public decimal Valor { get; set; }
         public PlanoTelefoniaTipo Tipo { get; set; }
+        public string Operadora { get; set; }
         public IList<PlanoTelefoniaDDD> DDDs { get; set; }
     }
 }
