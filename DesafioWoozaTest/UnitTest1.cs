@@ -87,5 +87,38 @@ namespace DesafioWoozaTest
             BadRequestObjectResult result = retorno as BadRequestObjectResult;
             Assert.NotNull(result);
         }
+
+        [Test]
+        public void RemoverPlano_Sucesso()
+        {
+            PlanoTelefonia plano = new PlanoTelefonia()
+            {
+                Codigo = "12",
+                Minutos = 1300,
+                FranquiaInternet = 15,
+                Valor = 139.90m,
+                Tipo = new PlanoTelefoniaTipo() { Tipo = "Pós" }
+            };
+            plano.DDDs = new List<PlanoTelefoniaDDD>
+            {
+                new PlanoTelefoniaDDD() { DDD = "33" }
+            };
+
+            var retorno = _planoTelefoniaController.Atualizar(plano);
+
+            OkObjectResult result = retorno as OkObjectResult;
+            Assert.NotNull(result);
+        }
+
+        [Test]
+        public void RemoverPlano_Falha()
+        {
+            PlanoTelefonia plano = new PlanoTelefonia();
+
+            var retorno = _planoTelefoniaController.Atualizar(plano);
+
+            BadRequestObjectResult result = retorno as BadRequestObjectResult;
+            Assert.NotNull(result);
+        }
     }
 }

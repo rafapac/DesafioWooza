@@ -48,17 +48,14 @@ namespace DesafioWooza.Controllers
         }
 
         [HttpDelete]
-        public void Remover(PlanoTelefonia plano)
+        public IActionResult Remover(PlanoTelefonia plano)
         {
-            try
-            {
-                _planoTelefoniaService.Remover(plano);
-            }
-            catch (Exception e)
-            {
-                _logger.LogError(e.ToString());
-                Response.StatusCode = (int)HttpStatusCode.BadRequest;
-            }
+            var retorno = _planoTelefoniaService.Remover(plano);
+
+            if (retorno.StatusCode == HttpStatusCode.OK)
+                return Ok(retorno.Messages);
+            else
+                return BadRequest(retorno.Messages);
         }
 
         [HttpGet]

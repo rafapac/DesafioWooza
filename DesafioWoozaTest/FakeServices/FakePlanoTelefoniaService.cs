@@ -11,9 +11,9 @@ namespace DesafioWoozaTest.FakeServices
     {
 
         private readonly List<PlanoTelefonia> _planosTelefonia;
-        private readonly PlanoTelefoniaTipo[] _tiposPlano = new PlanoTelefoniaTipo[3] { new PlanoTelefoniaTipo() { Id = new Guid(), Tipo = "Controle" },
-                                                                                        new PlanoTelefoniaTipo() { Id = new Guid(), Tipo = "Pós" },
-                                                                                        new PlanoTelefoniaTipo() { Id = new Guid(), Tipo = "Pré" } };
+        private readonly PlanoTelefoniaTipo[] _tiposPlano = new PlanoTelefoniaTipo[3] { new PlanoTelefoniaTipo() { Id = Guid.NewGuid(), Tipo = "Controle" },
+                                                                                        new PlanoTelefoniaTipo() { Id = Guid.NewGuid(), Tipo = "Pós" },
+                                                                                        new PlanoTelefoniaTipo() { Id = Guid.NewGuid(), Tipo = "Pré" } };
 
         public FakePlanoTelefoniaService()
         {
@@ -25,11 +25,12 @@ namespace DesafioWoozaTest.FakeServices
                 string operadora = string.Empty;
                 PlanoTelefoniaTipo tipoPlano = new PlanoTelefoniaTipo();
 
-               if (1 <= i && i <= 3)
+                if (1 <= i && i <= 3)
                 {
                     operadora = "TIM";
                     tipoPlano = _tiposPlano[0];
-                } else if (4 <= i && i <= 6)
+                }
+                else if (4 <= i && i <= 6)
                 {
                     tipoPlano = _tiposPlano[0];
                     operadora = "CLARO";
@@ -126,22 +127,44 @@ namespace DesafioWoozaTest.FakeServices
 
         public ReturnObject Remover(PlanoTelefonia plano)
         {
-            ReturnObject retorno = new ReturnObject();
+            ReturnObject retorno = new ReturnObject
+            {
+                StatusCode = HttpStatusCode.BadRequest
+            };
+
+            PlanoTelefonia planoTelefonia = _planosTelefonia.Where(x => x.Codigo.Equals(plano.Codigo, StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
+
+            if (planoTelefonia != null)
+            {
+                _planosTelefonia.Remove(planoTelefonia);
+                retorno.StatusCode = HttpStatusCode.OK;
+            }
+
             return retorno;
         }
 
         public IList<PlanoTelefonia> ListarPorTipo(string tipo, string ddd)
         {
-            return _planosTelefonia.Where(x => x.Tipo.Tipo.Equals(tipo) && x.DDDs.Where(y => y.DDD.Equals(ddd)).FirstOrDefault() != null).ToList();
+            if (string.IsNullOrWhiteSpace(ddd))
+                return _planosTelefonia.Where(x => x.Tipo.Tipo.Equals(tipo, StringComparison.InvariantCultureIgnoreCase)).ToList();
+            else
+                return _planosTelefonia.Where(x => x.Tipo.Tipo.Equals(tipo, StringComparison.InvariantCultureIgnoreCase) && x.DDDs.Where(y => y.DDD.Equals(ddd)).FirstOrDefault() != null).ToList();
+
         }
 
         public IList<PlanoTelefonia> ListarPorOperadora(string operadora, string ddd)
         {
-            return _planosTelefonia.Where(x => x.Operadora.Equals(operadora) && x.DDDs.Where(y => y.DDD.Equals(ddd)).FirstOrDefault() != null).ToList();
+            if (string.IsNullOrWhiteSpace(ddd))
+                return _planosTelefonia.Where(x => x.Operadora.Equals(operadora, StringComparison.InvariantCultureIgnoreCase)).ToList();
+            else
+                return _planosTelefonia.Where(x => x.Operadora.Equals(operadora, StringComparison.InvariantCultureIgnoreCase) && x.DDDs.Where(y => y.DDD.Equals(ddd)).FirstOrDefault() != null).ToList();
         }
         public IList<PlanoTelefonia> ListarPorPlano(string plano, string ddd)
         {
-            return _planosTelefonia.Where(x => x.Codigo.Equals(plano) && x.DDDs.Where(y => y.DDD.Equals(ddd)).FirstOrDefault() != null).ToList();
+            if (string.IsNullOrWhiteSpace(ddd))
+                return _planosTelefonia.Where(x => x.Codigo.Equals(plano, StringComparison.InvariantCultureIgnoreCase) && x.DDDs.Where(y => y.DDD.Equals(ddd)).FirstOrDefault() != null).ToList();
+            else
+                return _planosTelefonia.Where(x => x.Codigo.Equals(plano, StringComparison.InvariantCultureIgnoreCase)).ToList();
         }
     }
 }
