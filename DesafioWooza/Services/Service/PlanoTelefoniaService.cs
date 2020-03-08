@@ -7,12 +7,18 @@ namespace DesafioWooza.Services.Service
 {
     public class PlanoTelefoniaService : IPlanoTelefoniaService
     {
-        public void Atualizar(PlanoTelefonia plano)
+        public ReturnObject Cadastrar(PlanoTelefonia plano)
+        {
+
+            throw new NotImplementedException();
+        }
+
+        public ReturnObject Atualizar(PlanoTelefonia plano)
         {
             throw new NotImplementedException();
         }
 
-        public void Cadastrar(PlanoTelefonia plano)
+        public ReturnObject Remover(PlanoTelefonia plano)
         {
             throw new NotImplementedException();
         }
@@ -28,11 +34,6 @@ namespace DesafioWooza.Services.Service
         }
 
         public IList<PlanoTelefonia> ListarPorTipo(string tipo, string ddd)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Remover(PlanoTelefonia plano)
         {
             throw new NotImplementedException();
         }
