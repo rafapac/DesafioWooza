@@ -156,5 +156,13 @@ namespace DesafioWoozaTest
             Assert.NotNull(retorno);
             Assert.AreEqual(1, retorno.Count);
         }
+
+        [Test]
+        public void GetPorPlano_Sucesso()
+        {
+            PlanoTelefonia retorno = _planoTelefoniaController.GetPorPlano("1");
+
+            Assert.NotNull(retorno);
+        }
     }
 }

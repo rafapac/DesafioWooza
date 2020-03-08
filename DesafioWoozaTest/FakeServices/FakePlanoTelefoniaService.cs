@@ -159,12 +159,9 @@ namespace DesafioWoozaTest.FakeServices
             else
                 return _planosTelefonia.Where(x => x.Operadora.Equals(operadora, StringComparison.InvariantCultureIgnoreCase) && x.DDDs.Where(y => y.DDD.Equals(ddd)).FirstOrDefault() != null).ToList();
         }
-        public IList<PlanoTelefonia> ListarPorPlano(string plano, string ddd)
+        public PlanoTelefonia GetPorPlano(string plano)
         {
-            if (string.IsNullOrWhiteSpace(ddd))
-                return _planosTelefonia.Where(x => x.Codigo.Equals(plano, StringComparison.InvariantCultureIgnoreCase) && x.DDDs.Where(y => y.DDD.Equals(ddd)).FirstOrDefault() != null).ToList();
-            else
-                return _planosTelefonia.Where(x => x.Codigo.Equals(plano, StringComparison.InvariantCultureIgnoreCase)).ToList();
+            return _planosTelefonia.Where(x => x.Codigo.Equals(plano, StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
         }
     }
 }

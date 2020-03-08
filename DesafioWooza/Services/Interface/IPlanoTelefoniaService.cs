@@ -10,6 +10,6 @@ namespace DesafioWooza.Services.Interface
         ReturnObject Remover(PlanoTelefonia plano);
         IList<PlanoTelefonia> ListarPorTipo(string tipo, string ddd);
         IList<PlanoTelefonia> ListarPorOperadora(string operadora, string ddd);
-        IList<PlanoTelefonia> ListarPorPlano(string plano, string ddd);
+        PlanoTelefonia GetPorPlano(string plano);
     }
 }

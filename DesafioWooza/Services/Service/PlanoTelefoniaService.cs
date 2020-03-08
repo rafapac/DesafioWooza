@@ -27,7 +27,7 @@ namespace DesafioWooza.Services.Service
             throw new NotImplementedException();
         }
 
-        public IList<PlanoTelefonia> ListarPorPlano(string plano, string ddd)
+        public PlanoTelefonia GetPorPlano(string plano)
         {
             throw new NotImplementedException();
         }

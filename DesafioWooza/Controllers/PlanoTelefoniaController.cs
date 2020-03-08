@@ -31,7 +31,7 @@ namespace DesafioWooza.Controllers
             var retorno = _planoTelefoniaService.Cadastrar(plano);
 
             if (retorno.StatusCode == HttpStatusCode.Created)
-                return CreatedAtAction(nameof(ListarPorPlano), new { id = plano.Codigo }, plano);
+                return CreatedAtAction(nameof(GetPorPlano), new { id = plano.Codigo }, plano);
             else
                 return BadRequest(retorno.Messages);
         }
@@ -62,7 +62,7 @@ namespace DesafioWooza.Controllers
         [Route("listarportipo")]
         public IList<PlanoTelefonia> ListarPorTipo(string tipo, string ddd)
         {
-            IList<PlanoTelefonia> retorno = new List<PlanoTelefonia>();
+            IList<PlanoTelefonia> retorno = null;
 
             try
             {
@@ -81,7 +81,7 @@ namespace DesafioWooza.Controllers
         [Route("listarporoperadora")]
         public IList<PlanoTelefonia> ListarPorOperadora(string operadora, string ddd)
         {
-            IList<PlanoTelefonia> retorno = new List<PlanoTelefonia>();
+            IList<PlanoTelefonia> retorno = null;
 
             try
             {
@@ -97,14 +97,14 @@ namespace DesafioWooza.Controllers
         }
 
         [HttpGet]
-        [Route("listarporplano")]
-        public IList<PlanoTelefonia> ListarPorPlano(string plano, string ddd)
+        [Route("getporplano")]
+        public PlanoTelefonia GetPorPlano(string plano)
         {
-            IList<PlanoTelefonia> retorno = new List<PlanoTelefonia>();
+            PlanoTelefonia retorno = null;
 
             try
             {
-                retorno = _planoTelefoniaService.ListarPorPlano(plano, ddd);
+                retorno = _planoTelefoniaService.GetPorPlano(plano);
             }
             catch (Exception e)
             {
