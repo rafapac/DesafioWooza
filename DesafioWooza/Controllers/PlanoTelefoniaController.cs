@@ -37,17 +37,14 @@ namespace DesafioWooza.Controllers
         }
 
         [HttpPut]
-        public void Atualizar(PlanoTelefonia plano)
+        public IActionResult Atualizar(PlanoTelefonia plano)
         {
-            try
-            {
-                _planoTelefoniaService.Atualizar(plano);
-            }
-            catch (Exception e)
-            {
-                _logger.LogError(e.ToString());
-                Response.StatusCode = (int)HttpStatusCode.BadRequest;
-            }
+            var retorno = _planoTelefoniaService.Atualizar(plano);
+
+            if (retorno.StatusCode == HttpStatusCode.OK)
+                return Ok(retorno.Messages);
+            else
+                return BadRequest(retorno.Messages);
         }
 
         [HttpDelete]

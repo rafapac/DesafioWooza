@@ -83,7 +83,7 @@ namespace DesafioWoozaTest.FakeServices
                 StatusCode = HttpStatusCode.BadRequest
             };
 
-            if (_planosTelefonia.Where(x => x.Codigo.Equals(plano.Codigo)).FirstOrDefault() == null)
+            if (_planosTelefonia.Where(x => x.Codigo.Equals(plano.Codigo, StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault() == null)
             {
                 if (plano.Tipo != null)
                 {
@@ -100,7 +100,27 @@ namespace DesafioWoozaTest.FakeServices
 
         public ReturnObject Atualizar(PlanoTelefonia plano)
         {
-            ReturnObject retorno = new ReturnObject();
+            ReturnObject retorno = new ReturnObject
+            {
+                StatusCode = HttpStatusCode.BadRequest
+            };
+
+            PlanoTelefonia planoTelefonia = _planosTelefonia.Where(x => x.Codigo.Equals(plano.Codigo, StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
+
+            if (planoTelefonia != null)
+            {
+                if (plano.Tipo != null)
+                {
+                    PlanoTelefoniaTipo tipo = _tiposPlano.Where(x => x.Tipo.Equals(plano.Tipo.Tipo, StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
+                    if (tipo != null)
+                    {
+                        plano.Tipo = tipo;
+                        _planosTelefonia[_planosTelefonia.FindIndex(x => x.Codigo.Equals(plano.Codigo, StringComparison.InvariantCultureIgnoreCase))] = plano;
+                        retorno.StatusCode = HttpStatusCode.OK;
+                    }
+                }
+            }
+
             return retorno;
         }
 
