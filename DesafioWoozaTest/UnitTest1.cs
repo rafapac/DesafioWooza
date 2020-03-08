@@ -120,5 +120,23 @@ namespace DesafioWoozaTest
             BadRequestObjectResult result = retorno as BadRequestObjectResult;
             Assert.NotNull(result);
         }
+
+        [Test]
+        public void ListarPorTipo_Sucesso()
+        {
+            IList<PlanoTelefonia> retorno = _planoTelefoniaController.ListarPorTipo("Controle", null);
+
+            Assert.NotNull(retorno);
+            Assert.AreEqual(6, retorno.Count);
+        }
+
+        [Test]
+        public void ListarPorTipo_DDD_Sucesso()
+        {
+            var retorno = _planoTelefoniaController.ListarPorTipo("Controle", "11");
+
+            Assert.NotNull(retorno);
+            Assert.AreEqual(1, retorno.Count);
+        }
     }
 }

@@ -60,7 +60,7 @@ namespace DesafioWooza.Controllers
 
         [HttpGet]
         [Route("listarportipo")]
-        public IEnumerable<PlanoTelefonia> ListarPorTipo(string tipo, string ddd)
+        public IList<PlanoTelefonia> ListarPorTipo(string tipo, string ddd)
         {
             IList<PlanoTelefonia> retorno = new List<PlanoTelefonia>();
 
@@ -79,7 +79,7 @@ namespace DesafioWooza.Controllers
 
         [HttpGet]
         [Route("listarporoperadora")]
-        public IEnumerable<PlanoTelefonia> ListarPorOperadora(string operadora, string ddd)
+        public IList<PlanoTelefonia> ListarPorOperadora(string operadora, string ddd)
         {
             IList<PlanoTelefonia> retorno = new List<PlanoTelefonia>();
 
@@ -98,7 +98,7 @@ namespace DesafioWooza.Controllers
 
         [HttpGet]
         [Route("listarporplano")]
-        public IEnumerable<PlanoTelefonia> ListarPorPlano(string plano, string ddd)
+        public IList<PlanoTelefonia> ListarPorPlano(string plano, string ddd)
         {
             IList<PlanoTelefonia> retorno = new List<PlanoTelefonia>();
 
