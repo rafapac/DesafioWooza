@@ -33,7 +33,7 @@ namespace DesafioWooza.Controllers
             if (retorno.StatusCode == HttpStatusCode.Created)
                 return CreatedAtAction(nameof(ListarPorPlano), new { id = plano.Codigo }, plano);
             else
-                return BadRequest();
+                return BadRequest(retorno.Messages);
         }
 
         [HttpPut]

@@ -78,23 +78,22 @@ namespace DesafioWoozaTest.FakeServices
 
         public ReturnObject Cadastrar(PlanoTelefonia plano)
         {
-            ReturnObject retorno = new ReturnObject();
+            ReturnObject retorno = new ReturnObject
+            {
+                StatusCode = HttpStatusCode.BadRequest
+            };
+
             if (_planosTelefonia.Where(x => x.Codigo.Equals(plano.Codigo)).FirstOrDefault() == null)
             {
-                PlanoTelefoniaTipo tipo = _tiposPlano.Where(x => x.Tipo.Equals(plano.Tipo.Tipo, StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
-                if (tipo != null)
+                if (plano.Tipo != null)
                 {
-                    _planosTelefonia.Add(plano);
-                    retorno.StatusCode = HttpStatusCode.Created;
+                    PlanoTelefoniaTipo tipo = _tiposPlano.Where(x => x.Tipo.Equals(plano.Tipo.Tipo, StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
+                    if (tipo != null)
+                    {
+                        _planosTelefonia.Add(plano);
+                        retorno.StatusCode = HttpStatusCode.Created;
+                    }
                 }
-                else
-                {
-                    retorno.StatusCode = HttpStatusCode.BadRequest;
-                }
-            }
-            else
-            {
-                retorno.StatusCode = HttpStatusCode.BadRequest;
             }
             return retorno;
         }
