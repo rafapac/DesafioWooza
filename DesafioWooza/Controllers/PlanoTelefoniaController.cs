@@ -1,4 +1,5 @@
-﻿using DesafioWooza.Models;
+﻿
+using DesafioWooza.Models;
 using DesafioWooza.Services.Interface;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -9,7 +10,7 @@ using System.Net;
 namespace DesafioWooza.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [System.Web.Http.Route("api/[controller]")]
     public class PlanoTelefoniaController : ControllerBase
     {
 
@@ -25,17 +26,14 @@ namespace DesafioWooza.Controllers
         }
 
         [HttpPost]
-        public void Cadastrar(PlanoTelefonia plano)
+        public IActionResult Cadastrar(PlanoTelefonia plano)
         {
-            try
-            {
-                _planoTelefoniaService.Cadastrar(plano);
-            }
-            catch (Exception e)
-            {
-                _logger.LogError(e.ToString());
-                Response.StatusCode = (int)HttpStatusCode.BadRequest;
-            }
+            var retorno = _planoTelefoniaService.Cadastrar(plano);
+
+            if (retorno.StatusCode == HttpStatusCode.Created)
+                return CreatedAtAction(nameof(ListarPorPlano), new { id = plano.Codigo }, plano);
+            else
+                return BadRequest();
         }
 
         [HttpPut]

@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Net;
 
 namespace DesafioWooza.Models
 {
     public class ReturnObject
     {
-        public int StatusCode { get; set; }
+        public HttpStatusCode StatusCode { get; set; }
         public IList<string> Messages { get; set; }
     }
 }

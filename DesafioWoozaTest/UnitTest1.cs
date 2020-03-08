@@ -5,7 +5,7 @@ using DesafioWoozaTest.FakeServices;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using NUnit.Framework;
-using System;
+using System.Collections.Generic;
 
 namespace DesafioWoozaTest
 {
@@ -23,16 +23,28 @@ namespace DesafioWoozaTest
         }
 
         [Test]
-        public void Cadastrar_NovoPlano_Ok()
+        public void Cadastrar_NovoPlano_Sucesso()
         {
             PlanoTelefonia plano = new PlanoTelefonia()
             {
-                Codigo = "13",
+                Codigo = "25",
                 Minutos = 1300,
                 FranquiaInternet = 15,
                 Valor = 139.90m,
-                Tipo = new PlanoTelefoniaTipo() { Id = new Guid(), Tipo = tipoPlano }
+                Tipo = new PlanoTelefoniaTipo() { Tipo = "Pós" }
             };
+            plano.DDDs = new List<PlanoTelefoniaDDD>
+            {
+                new PlanoTelefoniaDDD() { DDD = "33" }
+            };
+
+            var retorno = _planoTelefoniaController.Cadastrar(plano);
+
+            Assert.NotNull(retorno);
+            CreatedAtActionResult result = retorno as CreatedAtActionResult;
+
+            Assert.NotNull(result);
+            Assert.AreEqual(201, result.StatusCode);
         }
     }
 }

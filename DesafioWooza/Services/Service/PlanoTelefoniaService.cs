@@ -9,7 +9,6 @@ namespace DesafioWooza.Services.Service
     {
         public ReturnObject Cadastrar(PlanoTelefonia plano)
         {
-
             throw new NotImplementedException();
         }
 

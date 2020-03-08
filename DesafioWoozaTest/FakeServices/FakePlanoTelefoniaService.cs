@@ -3,6 +3,7 @@ using DesafioWooza.Services.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 
 namespace DesafioWoozaTest.FakeServices
 {
@@ -75,19 +76,39 @@ namespace DesafioWoozaTest.FakeServices
             //Simulação de planos na base - Fim
         }
 
-        public void Cadastrar(PlanoTelefonia plano)
+        public ReturnObject Cadastrar(PlanoTelefonia plano)
         {
-
+            ReturnObject retorno = new ReturnObject();
+            if (_planosTelefonia.Where(x => x.Codigo.Equals(plano.Codigo)).FirstOrDefault() == null)
+            {
+                PlanoTelefoniaTipo tipo = _tiposPlano.Where(x => x.Tipo.Equals(plano.Tipo.Tipo, StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
+                if (tipo != null)
+                {
+                    _planosTelefonia.Add(plano);
+                    retorno.StatusCode = HttpStatusCode.Created;
+                }
+                else
+                {
+                    retorno.StatusCode = HttpStatusCode.BadRequest;
+                }
+            }
+            else
+            {
+                retorno.StatusCode = HttpStatusCode.BadRequest;
+            }
+            return retorno;
         }
 
-        public void Atualizar(PlanoTelefonia plano)
+        public ReturnObject Atualizar(PlanoTelefonia plano)
         {
-
+            ReturnObject retorno = new ReturnObject();
+            return retorno;
         }
 
-        public void Remover(PlanoTelefonia plano)
+        public ReturnObject Remover(PlanoTelefonia plano)
         {
-
+            ReturnObject retorno = new ReturnObject();
+            return retorno;
         }
 
         public IList<PlanoTelefonia> ListarPorTipo(string tipo, string ddd)
