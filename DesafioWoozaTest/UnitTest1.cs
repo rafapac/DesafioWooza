@@ -138,5 +138,23 @@ namespace DesafioWoozaTest
             Assert.NotNull(retorno);
             Assert.AreEqual(1, retorno.Count);
         }
+
+        [Test]
+        public void ListarPorOperadora_Sucesso()
+        {
+            IList<PlanoTelefonia> retorno = _planoTelefoniaController.ListarPorOperadora("TIM", null);
+
+            Assert.NotNull(retorno);
+            Assert.AreEqual(3, retorno.Count);
+        }
+
+        [Test]
+        public void ListarPorOperadora_DDD_Sucesso()
+        {
+            var retorno = _planoTelefoniaController.ListarPorOperadora("TIM", "11");
+
+            Assert.NotNull(retorno);
+            Assert.AreEqual(1, retorno.Count);
+        }
     }
 }

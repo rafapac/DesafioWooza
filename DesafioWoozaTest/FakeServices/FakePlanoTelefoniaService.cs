@@ -48,7 +48,7 @@ namespace DesafioWoozaTest.FakeServices
 
                 PlanoTelefonia plano = new PlanoTelefonia()
                 {
-                    Id = new Guid(),
+                    Id = Guid.NewGuid(),
                     Codigo = i.ToString(),
                     Minutos = i * 100,
                     FranquiaInternet = i + 2,
@@ -63,7 +63,7 @@ namespace DesafioWoozaTest.FakeServices
                 {
                     PlanoTelefoniaDDD ddd = new PlanoTelefoniaDDD()
                     {
-                        Id = new Guid(),
+                        Id = Guid.NewGuid(),
                         DDD = (10 + i).ToString()
                     };
                     DDDs.Add(ddd);
