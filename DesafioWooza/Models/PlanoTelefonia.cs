@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -10,6 +11,7 @@ namespace DesafioWooza.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [JsonIgnore]
         public Guid Id { get; set; }
 
         [Required(ErrorMessage = "Favor informar código do plano")]
@@ -29,6 +31,7 @@ namespace DesafioWooza.Models
         [Column(TypeName = "decimal(6,2)")]
         public decimal Valor { get; set; }
 
+        [JsonIgnore]
         public Guid FkPlanoTelefoniaTipo { get; set; }
 
         [ForeignKey("FkPlanoTelefoniaTipo")]
