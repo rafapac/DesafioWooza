@@ -14,5 +14,10 @@ namespace DesafioWooza.Models
         [Required(ErrorMessage = "Favor informar DDD")]
         [StringLength(2, ErrorMessage = "DDD não pode ser maior que 2 caracteres")]
         public string DDD { get; set; }
+
+        public Guid FkPlanoTelefonia { get; set; }
+
+        [ForeignKey("FkPlanoTelefonia")]
+        public virtual PlanoTelefonia Plano { get; set; }
     }
 }

@@ -10,7 +10,7 @@ using System.Net;
 namespace DesafioWooza.Controllers
 {
     [ApiController]
-    [System.Web.Http.Route("api/[controller]")]
+    [Route("api/")]
     public class PlanoTelefoniaController : ControllerBase
     {
 
@@ -26,17 +26,21 @@ namespace DesafioWooza.Controllers
         }
 
         [HttpPost]
+        [Route("cadastrar")]
         public IActionResult Cadastrar(PlanoTelefonia plano)
         {
             var retorno = _planoTelefoniaService.Cadastrar(plano);
 
-            if (retorno.StatusCode == HttpStatusCode.Created)
-                return CreatedAtAction(nameof(GetPorPlano), new { id = plano.Codigo }, plano);
-            else
-                return BadRequest(retorno.Messages);
+            return new ContentResult
+            {
+                Content = retorno.Messages != null ? string.Join("\n", retorno.Messages) : string.Empty,
+                ContentType = "text/plain",
+                StatusCode = (int)retorno.StatusCode
+            };
         }
 
         [HttpPut]
+        [Route("atualizar")]
         public IActionResult Atualizar(PlanoTelefonia plano)
         {
             var retorno = _planoTelefoniaService.Atualizar(plano);
@@ -48,6 +52,7 @@ namespace DesafioWooza.Controllers
         }
 
         [HttpDelete]
+        [Route("remover")]
         public IActionResult Remover(PlanoTelefonia plano)
         {
             var retorno = _planoTelefoniaService.Remover(plano);

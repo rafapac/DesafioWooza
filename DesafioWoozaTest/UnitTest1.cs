@@ -40,8 +40,8 @@ namespace DesafioWoozaTest
 
             var retorno = _planoTelefoniaController.Cadastrar(plano);
 
-            CreatedAtActionResult result = retorno as CreatedAtActionResult;
-            Assert.NotNull(result);
+            ContentResult result = retorno as ContentResult;
+            Assert.AreEqual(201, result.StatusCode);
         }
 
         [Test]
@@ -51,8 +51,8 @@ namespace DesafioWoozaTest
 
             var retorno = _planoTelefoniaController.Cadastrar(plano);
 
-            BadRequestObjectResult result = retorno as BadRequestObjectResult;
-            Assert.NotNull(result);
+            ContentResult result = retorno as ContentResult;
+            Assert.AreEqual(400, result.StatusCode);
         }
 
         [Test]

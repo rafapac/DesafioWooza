@@ -26,18 +26,19 @@ namespace DesafioWooza.Models
 
         [Required(ErrorMessage = "Favor informar valor do plano")]
         [Range(1, 999999.99, ErrorMessage = "Favor informar um valor válido para valor do plano (1 - 999999,99)")]
+        [Column(TypeName = "decimal(6,2)")]
         public decimal Valor { get; set; }
 
         public Guid FkPlanoTelefoniaTipo { get; set; }
 
         [ForeignKey("FkPlanoTelefoniaTipo")]
         [Required(ErrorMessage = "Favor informar tipo do plano")]
-        public PlanoTelefoniaTipo Tipo { get; set; }
+        public virtual PlanoTelefoniaTipo Tipo { get; set; }
 
         [Required(ErrorMessage = "Favor informar operadora do plano")]
         [StringLength(50, ErrorMessage = "Operadora do plano não pode ser maior que 50 caracteres")]
         public string Operadora { get; set; }
 
-        public ICollection<PlanoTelefoniaDDD> DDDs { get; set; }
+        public virtual ICollection<PlanoTelefoniaDDD> DDDs { get; set; }
     }
 }

@@ -1,7 +1,11 @@
+using DesafioWooza.Models;
+using DesafioWooza.Repositories.Interface;
+using DesafioWooza.Repositories.Repository;
 using DesafioWooza.Services.Interface;
 using DesafioWooza.Services.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -22,6 +26,9 @@ namespace DesafioWooza
         {
             services.AddControllers();
             services.AddScoped<IPlanoTelefoniaService, PlanoTelefoniaService>();
+            services.AddScoped<IPlanoTelefoniaRepository, PlanoTelefoniaRepository>();
+            services.AddDbContext<AppDbContext>(options =>
+            options.UseLazyLoadingProxies().UseSqlServer(Configuration.GetConnectionString("connectionString")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
