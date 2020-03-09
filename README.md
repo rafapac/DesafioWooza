@@ -10,7 +10,7 @@ API de cadastro, atualização, remoção e listagem de planos de telefonia.
   * NUnit
  
 
-1. Endpoints disponíveis:
+2. Endpoints disponíveis:
 
 * "/api/cadastrar":
   * Método: POST
