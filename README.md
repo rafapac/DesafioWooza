@@ -1,81 +1,79 @@
+
 # DesafioWooza
 
 API de cadastro, atualização, remoção e listagem de planos de telefonia.
 
-Tecnoligias/Framework utilizados:
-  - Microsoft Visual Studio Community 2019
-  - .NET Core 3.1
-  - Entity Framework Core
-  - NUnit
+1. Tecnoligias/Framework utilizados:
+  * Microsoft Visual Studio Community 2019
+  * .NET Core 3.1
+  * Entity Framework Core
+  * NUnit
  
 
-Endpoints disponíveis:
+1. Endpoints disponíveis:
 
-  - "/api/cadastrar":
-    Método: POST
-    Tipo de parâmetro: JSON (enviado no request body)
-    Parâmetro:{
-	              "Codigo": [string], -- Obrigatório
-	              "Tipo": {"Tipo": [string]}, -- Obrigatório
-	              "Operadora": [string], -- Obrigatório
-	              "Valor": [decimal], -- Obrigatório
-	              "Minutos": [int], -- Obrigatório
-	              "FranquiaInternet": [int], --Obrigatório
-	              "DDDs": [{ "DDD": [string]}] -- Não Obrigatório
-              }
-    Retorno: HttpStatus(Created), HttpStatus(BadRequest)
+* "/api/cadastrar":
+  * Método: POST
+  * Tipo de parâmetro: JSON (enviado no request body)
+  * Parâmetro:
+    {"Codigo": [string|obrigatório],
+    "Tipo": {"Tipo": [string|obrigatório]},
+    "Operadora": [string|obrigatório],
+    "Valor": [string|obrigatório],
+    "Minutos": [int],
+    "FranquiaInternet": [int],
+    "DDDs": [{ "DDD": [string|obrigatório]} | Não obrigatório]}
+  * Retorno: HttpStatus(Created), HttpStatus(BadRequest)
     
-  - "/api/atualizar":
-    Método: POST
-    Tipo de parâmetro: JSON (enviado no request body)
-    Parâmetro:{
-	              "Codigo": [string], --Obrigatório
-	              "Tipo": {"Tipo": [string]}, -- Obrigatório
-	              "Operadora": [string], -- Obrigatório
-	              "Valor": [decimal], -- Obrigatório
-	              "Minutos": [int], -- Obrigatório
-	              "FranquiaInternet": [int], -- Obrigatório
-	              "DDDs": [{ "DDD": [string]}] -- Não Obrigatório
-              }
-    Retorno: HttpStatus(Ok), HttpStatus(BadRequest)
+ * "/api/atualizar":
+     - Método: POST
+     - Tipo de parâmetro: JSON (enviado no request body)
+     - Parâmetro:
+	      {"Codigo": [string|obrigatório],
+	      "Tipo": {"Tipo": [string|obrigatório]},
+	      "Operadora": [string|obrigatório],
+	      "Valor": [string|obrigatório],
+	      "Minutos": [int],
+	      "FranquiaInternet": [int],
+	      "DDDs": [{ "DDD": [string|obrigatório]} | Não obrigatório]}
+     - Retorno: HttpStatus(Ok), HttpStatus(BadRequest)
     
-  - "/api/remover":
-    Método: POST
-    Tipo de parâmetro: JSON (enviado no request body)
-    Parâmetro:{
-	              "Codigo": [string], -- Obrigatório
-	              "Tipo": {"Tipo": [string]}, -- Obrigatório
-	              "Operadora": [string], -- Obrigatório
-	              "Valor": [decimal], -- Obrigatório
-	              "Minutos": [int], -- Obrigatório
-	              "FranquiaInternet": [int], -- Obrigatório
-	              "DDDs": [{ "DDD": [string]}] -- Não Obrigatório
-              }
-    Retorno: HttpStatus(Ok), HttpStatus(BadRequest)
+ * "/api/remover":
+   * Método: POST
+   * Tipo de parâmetro: JSON (enviado no request body)
+   * Parâmetro:{
+	      {"Codigo": [string|obrigatório],
+	      "Tipo": {"Tipo": [string|obrigatório]},
+	      "Operadora": [string|obrigatório],
+	      "Valor": [string|obrigatório],
+	      "Minutos": [int],
+	      "FranquiaInternet": [int],
+	      "DDDs": [{ "DDD": [string|obrigatório]} | Não obrigatório]}
+   * Retorno: HttpStatus(Ok), HttpStatus(BadRequest)
     
-    - "/api/listarportipo":
-      Método: GET
-      Tipo de parâmetro: JSON (enviado no request body)
-      Parâmetro:{
+* "/api/listarportipo":
+   * Método: GET
+   * Tipo de parâmetro: JSON (enviado no request body)
+   * Parâmetro:{
                   "Tipo": [string], -- Obrigatório
                   "DDD": [string] -- Não Obrigatório
                 }
-      Retorno: Lista de planos de telefonia
+   * Retorno: Lista de planos de telefonia
       
-    - "/api/listarporoperadora":
-      Método: GET
-      Tipo de parâmetro: JSON (enviado no request body)
-      Parâmetro:{
+* "/api/listarporoperadora":
+   * Método: GET
+   * Tipo de parâmetro: JSON (enviado no request body)
+   * Parâmetro:{
                   "Operadora": [string], -- Obrigatório
                   "DDD": [string] -- Não Obrigatório
                 }
-      Retorno: Lista de planos de telefonia
+   * Retorno: Lista de planos de telefonia
       
-      - "/api/getporcodigo":
-        Método: GET
-        Tipo de parâmetro: JSON (enviado no request body)
-        Parâmetro:{
+* "/api/getporcodigo":
+   * Método: GET
+   * Tipo de parâmetro: JSON (enviado no request body)
+   * Parâmetro:{
                     "Codigo": [string] -- Obrigatório
                   }
-        Retorno: Plano de código informado
+   * Retorno: Plano de código informado
         
