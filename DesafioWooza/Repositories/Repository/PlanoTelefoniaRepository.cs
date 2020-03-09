@@ -51,5 +51,11 @@ namespace DesafioWooza.Repositories.Repository
             _db.PlanoTelefonia.Update(plano);
             _db.SaveChanges();
         }
+
+        public void DeletePlano(PlanoTelefonia plano)
+        {
+            _db.PlanoTelefonia.Remove(plano);
+            _db.SaveChanges();
+        }
     }
 }

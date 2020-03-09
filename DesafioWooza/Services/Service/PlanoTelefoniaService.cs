@@ -97,7 +97,25 @@ namespace DesafioWooza.Services.Service
 
         public ReturnObject Remover(PlanoTelefonia plano)
         {
-            throw new NotImplementedException();
+            ReturnObject retorno = new ReturnObject
+            {
+                StatusCode = HttpStatusCode.BadRequest,
+                Messages = new List<string>()
+            };
+
+            PlanoTelefonia planoDB = _planoTelefoniaRepository.GetPlanoPorCodigo(plano.Codigo);
+
+            if (planoDB != null)
+            {
+                _planoTelefoniaRepository.DeletePlano(planoDB);
+                retorno.StatusCode = HttpStatusCode.OK;
+                retorno.Messages.Add("Plano de telefonia removido com sucesso!");
+            }
+            else
+            {
+                retorno.Messages.Add("Plano de telefonia não encontrado");
+            }
+            return retorno;
         }
 
         public IList<PlanoTelefonia> ListarPorOperadora(string operadora, string ddd)

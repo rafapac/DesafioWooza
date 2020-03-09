@@ -11,5 +11,6 @@ namespace DesafioWooza.Repositories.Interface
         void InsertPlanoTelefonia(PlanoTelefonia plano);
         void DeleteDDDPorPlano(PlanoTelefonia plano);
         void UpdatePlanoTelefonia(PlanoTelefonia plano);
+        void DeletePlano(PlanoTelefonia plano);
     }
 }
