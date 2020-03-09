@@ -125,7 +125,7 @@ namespace DesafioWoozaTest
         [Test]
         public void ListarPorTipo_Sucesso()
         {
-            IList<PlanoTelefonia> retorno = _planoTelefoniaController.ListarPorTipo(new ListarPlanosViewModel() { Tipo = "Controle", DDD = null });
+            IList<PlanoTelefonia> retorno = _planoTelefoniaController.ListarPorTipo(new ListarPorTipoViewModel() { Tipo = "Controle", DDD = null });
 
             Assert.NotNull(retorno);
             Assert.AreEqual(6, retorno.Count);
@@ -134,7 +134,7 @@ namespace DesafioWoozaTest
         [Test]
         public void ListarPorTipo_DDD_Sucesso()
         {
-            var retorno = _planoTelefoniaController.ListarPorTipo(new ListarPlanosViewModel() { Tipo = "Controle", DDD = "11" });
+            var retorno = _planoTelefoniaController.ListarPorTipo(new ListarPorTipoViewModel() { Tipo = "Controle", DDD = "11" });
 
             Assert.NotNull(retorno);
             Assert.AreEqual(1, retorno.Count);
@@ -143,7 +143,7 @@ namespace DesafioWoozaTest
         [Test]
         public void ListarPorOperadora_Sucesso()
         {
-            IList<PlanoTelefonia> retorno = _planoTelefoniaController.ListarPorOperadora("TIM", null);
+            IList<PlanoTelefonia> retorno = _planoTelefoniaController.ListarPorOperadora(new ListarPorOperadoraViewModel() { Operadora = "TIM", DDD = null });
 
             Assert.NotNull(retorno);
             Assert.AreEqual(3, retorno.Count);
@@ -152,7 +152,7 @@ namespace DesafioWoozaTest
         [Test]
         public void ListarPorOperadora_DDD_Sucesso()
         {
-            var retorno = _planoTelefoniaController.ListarPorOperadora("TIM", "11");
+            var retorno = _planoTelefoniaController.ListarPorOperadora(new ListarPorOperadoraViewModel() { Operadora = "TIM", DDD = "11" });
 
             Assert.NotNull(retorno);
             Assert.AreEqual(1, retorno.Count);

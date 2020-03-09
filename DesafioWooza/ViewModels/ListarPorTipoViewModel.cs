@@ -2,7 +2,7 @@
 
 namespace DesafioWooza.ViewModels
 {
-    public class ListarPlanosViewModel
+    public class ListarPorTipoViewModel
     {
         [Required(ErrorMessage = "Favor informar tipo do plano")]
         [StringLength(50, ErrorMessage = "Tipo do plano não pode ser maior que 50 caracteres")]

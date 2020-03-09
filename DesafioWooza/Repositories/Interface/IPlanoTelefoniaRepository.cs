@@ -14,5 +14,6 @@ namespace DesafioWooza.Repositories.Interface
         void UpdatePlanoTelefonia(PlanoTelefonia plano);
         void DeletePlano(PlanoTelefonia plano);
         IList<PlanoTelefonia> ListarPorTipo(string tipo, string ddd);
+        IList<PlanoTelefonia> ListarPorOperadora(string operadora, string ddd);
     }
 }

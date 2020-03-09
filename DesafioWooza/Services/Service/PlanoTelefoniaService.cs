@@ -125,7 +125,7 @@ namespace DesafioWooza.Services.Service
 
         public IList<PlanoTelefonia> ListarPorOperadora(string operadora, string ddd)
         {
-            throw new NotImplementedException();
+            return _planoTelefoniaRepository.ListarPorOperadora(operadora, ddd);
         }
 
         public PlanoTelefonia GetPorPlano(string plano)

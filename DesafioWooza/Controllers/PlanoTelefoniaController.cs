@@ -68,7 +68,7 @@ namespace DesafioWooza.Controllers
 
         [HttpGet]
         [Route("listarportipo")]
-        public IList<PlanoTelefonia> ListarPorTipo(ListarPlanosViewModel model)
+        public IList<PlanoTelefonia> ListarPorTipo(ListarPorTipoViewModel model)
         {
             IList<PlanoTelefonia> retorno = null;
 
@@ -87,13 +87,13 @@ namespace DesafioWooza.Controllers
 
         [HttpGet]
         [Route("listarporoperadora")]
-        public IList<PlanoTelefonia> ListarPorOperadora(string operadora, string ddd)
+        public IList<PlanoTelefonia> ListarPorOperadora(ListarPorOperadoraViewModel model)
         {
             IList<PlanoTelefonia> retorno = null;
 
             try
             {
-                retorno = _planoTelefoniaService.ListarPorOperadora(operadora, ddd);
+                retorno = _planoTelefoniaService.ListarPorOperadora(model.Operadora, model.DDD);
             }
             catch (Exception e)
             {

@@ -66,7 +66,14 @@ namespace DesafioWooza.Repositories.Repository
                 return _db.PlanoTelefonia.Where(x => x.Tipo.Tipo.Equals(tipo)).ToList();
             else
                 return _db.PlanoTelefonia.Where(x => x.Tipo.Tipo.Equals(tipo) && x.DDDs.Where(y => y.DDD.Equals(ddd)).FirstOrDefault() != null).ToList();
+        }
 
+        public IList<PlanoTelefonia> ListarPorOperadora(string operadora, string ddd)
+        {
+            if (string.IsNullOrWhiteSpace(ddd))
+                return _db.PlanoTelefonia.Where(x => x.Operadora.Equals(operadora)).ToList();
+            else
+                return _db.PlanoTelefonia.Where(x => x.Operadora.Equals(operadora) && x.DDDs.Where(y => y.DDD.Equals(ddd)).FirstOrDefault() != null).ToList();
         }
     }
 }
