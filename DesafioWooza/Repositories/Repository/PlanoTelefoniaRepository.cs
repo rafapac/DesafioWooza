@@ -39,5 +39,17 @@ namespace DesafioWooza.Repositories.Repository
             _db.PlanoTelefonia.Add(plano);
             _db.SaveChanges();
         }
+
+        public void DeleteDDDPorPlano(PlanoTelefonia plano)
+        {
+            _db.PlanoTelefoniaDDD.RemoveRange(_db.PlanoTelefoniaDDD.Where(x => x.FkPlanoTelefonia == plano.Id));
+            _db.SaveChanges();
+        }
+
+        public void UpdatePlanoTelefonia(PlanoTelefonia plano)
+        {
+            _db.PlanoTelefonia.Update(plano);
+            _db.SaveChanges();
+        }
     }
 }

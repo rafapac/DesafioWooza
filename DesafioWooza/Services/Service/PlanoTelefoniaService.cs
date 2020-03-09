@@ -51,14 +51,48 @@ namespace DesafioWooza.Services.Service
                 retorno.Messages.Add("Plano de telefonia já cadastrado");
             }
             return retorno;
-
-
-            throw new NotImplementedException();
         }
 
         public ReturnObject Atualizar(PlanoTelefonia plano)
         {
-            throw new NotImplementedException();
+            ReturnObject retorno = new ReturnObject
+            {
+                StatusCode = HttpStatusCode.BadRequest,
+                Messages = new List<string>()
+            };
+
+            PlanoTelefonia planoDB = _planoTelefoniaRepository.GetPlanoPorCodigo(plano.Codigo);
+
+            if (planoDB != null)
+            {
+                PlanoTelefoniaTipo planoTipoDb = _planoTelefoniaRepository.GetPlanoTipoPorTipo(plano.Tipo.Tipo);
+
+                if (planoTipoDb != null)
+                {
+                    planoDB.Codigo = plano.Codigo;
+                    planoDB.Minutos = plano.Minutos;
+                    planoDB.FranquiaInternet = plano.FranquiaInternet;
+                    planoDB.Valor = plano.Valor;
+                    planoDB.Tipo = planoTipoDb;
+                    planoDB.DDDs = plano.DDDs;
+                    planoDB.Operadora = plano.Operadora;
+
+                    _planoTelefoniaRepository.DeleteDDDPorPlano(planoDB);
+                    _planoTelefoniaRepository.UpdatePlanoTelefonia(planoDB);
+
+                    retorno.StatusCode = HttpStatusCode.OK;
+                    retorno.Messages.Add("Plano de telefonia atualizado com sucesso!");
+                }
+                else
+                {
+                    retorno.Messages.Add("Tipo de plano informado não encontrado");
+                }
+            }
+            else
+            {
+                retorno.Messages.Add("Plano de telefonia não encontrado");
+            }
+            return retorno;
         }
 
         public ReturnObject Remover(PlanoTelefonia plano)

@@ -73,8 +73,8 @@ namespace DesafioWoozaTest
 
             var retorno = _planoTelefoniaController.Atualizar(plano);
 
-            OkObjectResult result = retorno as OkObjectResult;
-            Assert.NotNull(result);
+            ContentResult result = retorno as ContentResult;
+            Assert.AreEqual(200, result.StatusCode);
         }
 
         [Test]
@@ -84,8 +84,8 @@ namespace DesafioWoozaTest
 
             var retorno = _planoTelefoniaController.Atualizar(plano);
 
-            BadRequestObjectResult result = retorno as BadRequestObjectResult;
-            Assert.NotNull(result);
+            ContentResult result = retorno as ContentResult;
+            Assert.AreEqual(400, result.StatusCode);
         }
 
         [Test]
@@ -104,7 +104,7 @@ namespace DesafioWoozaTest
                 new PlanoTelefoniaDDD() { DDD = "33" }
             };
 
-            var retorno = _planoTelefoniaController.Atualizar(plano);
+            var retorno = _planoTelefoniaController.Remover(plano);
 
             OkObjectResult result = retorno as OkObjectResult;
             Assert.NotNull(result);
@@ -115,7 +115,7 @@ namespace DesafioWoozaTest
         {
             PlanoTelefonia plano = new PlanoTelefonia();
 
-            var retorno = _planoTelefoniaController.Atualizar(plano);
+            var retorno = _planoTelefoniaController.Remover(plano);
 
             BadRequestObjectResult result = retorno as BadRequestObjectResult;
             Assert.NotNull(result);

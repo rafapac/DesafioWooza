@@ -9,5 +9,7 @@ namespace DesafioWooza.Repositories.Interface
         PlanoTelefoniaDDD GetPlanoDDDPorDDD(string ddd);
         void InsertPlanoTelefoniaDDD(PlanoTelefoniaDDD ddd);
         void InsertPlanoTelefonia(PlanoTelefonia plano);
+        void DeleteDDDPorPlano(PlanoTelefonia plano);
+        void UpdatePlanoTelefonia(PlanoTelefonia plano);
     }
 }

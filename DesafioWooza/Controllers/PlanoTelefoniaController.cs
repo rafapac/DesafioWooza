@@ -39,19 +39,21 @@ namespace DesafioWooza.Controllers
             };
         }
 
-        [HttpPut]
+        [HttpPost]
         [Route("atualizar")]
         public IActionResult Atualizar(PlanoTelefonia plano)
         {
             var retorno = _planoTelefoniaService.Atualizar(plano);
 
-            if (retorno.StatusCode == HttpStatusCode.OK)
-                return Ok(retorno.Messages);
-            else
-                return BadRequest(retorno.Messages);
+            return new ContentResult
+            {
+                Content = retorno.Messages != null ? string.Join("\n", retorno.Messages) : string.Empty,
+                ContentType = "text/plain",
+                StatusCode = (int)retorno.StatusCode
+            };
         }
 
-        [HttpDelete]
+        [HttpPost]
         [Route("remover")]
         public IActionResult Remover(PlanoTelefonia plano)
         {
