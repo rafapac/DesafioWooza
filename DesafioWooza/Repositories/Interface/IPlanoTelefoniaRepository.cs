@@ -1,4 +1,5 @@
 ﻿using DesafioWooza.Models;
+using System.Collections.Generic;
 
 namespace DesafioWooza.Repositories.Interface
 {
@@ -12,5 +13,6 @@ namespace DesafioWooza.Repositories.Interface
         void DeleteDDDPorPlano(PlanoTelefonia plano);
         void UpdatePlanoTelefonia(PlanoTelefonia plano);
         void DeletePlano(PlanoTelefonia plano);
+        IList<PlanoTelefonia> ListarPorTipo(string tipo, string ddd);
     }
 }

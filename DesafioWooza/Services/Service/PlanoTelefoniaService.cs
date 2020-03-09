@@ -118,17 +118,17 @@ namespace DesafioWooza.Services.Service
             return retorno;
         }
 
+        public IList<PlanoTelefonia> ListarPorTipo(string tipo, string ddd)
+        {
+            return _planoTelefoniaRepository.ListarPorTipo(tipo, ddd);
+        }
+
         public IList<PlanoTelefonia> ListarPorOperadora(string operadora, string ddd)
         {
             throw new NotImplementedException();
         }
 
         public PlanoTelefonia GetPorPlano(string plano)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IList<PlanoTelefonia> ListarPorTipo(string tipo, string ddd)
         {
             throw new NotImplementedException();
         }

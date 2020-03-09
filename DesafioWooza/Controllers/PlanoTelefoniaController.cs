@@ -1,6 +1,7 @@
 ﻿
 using DesafioWooza.Models;
 using DesafioWooza.Services.Interface;
+using DesafioWooza.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -67,13 +68,13 @@ namespace DesafioWooza.Controllers
 
         [HttpGet]
         [Route("listarportipo")]
-        public IList<PlanoTelefonia> ListarPorTipo(string tipo, string ddd)
+        public IList<PlanoTelefonia> ListarPorTipo(ListarPlanosViewModel model)
         {
             IList<PlanoTelefonia> retorno = null;
 
             try
             {
-                retorno = _planoTelefoniaService.ListarPorTipo(tipo, ddd);
+                retorno = _planoTelefoniaService.ListarPorTipo(model.Tipo, model.DDD);
             }
             catch (Exception e)
             {

@@ -1,5 +1,7 @@
 ﻿using DesafioWooza.Models;
 using DesafioWooza.Repositories.Interface;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace DesafioWooza.Repositories.Repository
@@ -56,6 +58,15 @@ namespace DesafioWooza.Repositories.Repository
         {
             _db.PlanoTelefonia.Remove(plano);
             _db.SaveChanges();
+        }
+
+        public IList<PlanoTelefonia> ListarPorTipo(string tipo, string ddd)
+        {
+            if (string.IsNullOrWhiteSpace(ddd))
+                return _db.PlanoTelefonia.Where(x => x.Tipo.Tipo.Equals(tipo)).ToList();
+            else
+                return _db.PlanoTelefonia.Where(x => x.Tipo.Tipo.Equals(tipo) && x.DDDs.Where(y => y.DDD.Equals(ddd)).FirstOrDefault() != null).ToList();
+
         }
     }
 }

@@ -1,6 +1,7 @@
 using DesafioWooza.Controllers;
 using DesafioWooza.Models;
 using DesafioWooza.Services.Interface;
+using DesafioWooza.ViewModels;
 using DesafioWoozaTest.FakeServices;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -124,7 +125,7 @@ namespace DesafioWoozaTest
         [Test]
         public void ListarPorTipo_Sucesso()
         {
-            IList<PlanoTelefonia> retorno = _planoTelefoniaController.ListarPorTipo("Controle", null);
+            IList<PlanoTelefonia> retorno = _planoTelefoniaController.ListarPorTipo(new ListarPlanosViewModel() { Tipo = "Controle", DDD = null });
 
             Assert.NotNull(retorno);
             Assert.AreEqual(6, retorno.Count);
@@ -133,7 +134,7 @@ namespace DesafioWoozaTest
         [Test]
         public void ListarPorTipo_DDD_Sucesso()
         {
-            var retorno = _planoTelefoniaController.ListarPorTipo("Controle", "11");
+            var retorno = _planoTelefoniaController.ListarPorTipo(new ListarPlanosViewModel() { Tipo = "Controle", DDD = "11" });
 
             Assert.NotNull(retorno);
             Assert.AreEqual(1, retorno.Count);
