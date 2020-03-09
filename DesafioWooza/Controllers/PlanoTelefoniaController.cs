@@ -105,14 +105,14 @@ namespace DesafioWooza.Controllers
         }
 
         [HttpGet]
-        [Route("getporplano")]
-        public PlanoTelefonia GetPorPlano(string plano)
+        [Route("getporcodigo")]
+        public PlanoTelefonia GetPorCodigo(GetPorCodigoViewModel plano)
         {
             PlanoTelefonia retorno = null;
 
             try
             {
-                retorno = _planoTelefoniaService.GetPorPlano(plano);
+                retorno = _planoTelefoniaService.GetPorCodigo(plano.Codigo);
             }
             catch (Exception e)
             {

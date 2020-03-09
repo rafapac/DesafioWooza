@@ -159,9 +159,9 @@ namespace DesafioWoozaTest
         }
 
         [Test]
-        public void GetPorPlano_Sucesso()
+        public void GetPorCodigo_Sucesso()
         {
-            PlanoTelefonia retorno = _planoTelefoniaController.GetPorPlano("1");
+            PlanoTelefonia retorno = _planoTelefoniaController.GetPorCodigo(new GetPorCodigoViewModel() { Codigo = "1" });
 
             Assert.NotNull(retorno);
         }

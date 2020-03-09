@@ -128,9 +128,9 @@ namespace DesafioWooza.Services.Service
             return _planoTelefoniaRepository.ListarPorOperadora(operadora, ddd);
         }
 
-        public PlanoTelefonia GetPorPlano(string plano)
+        public PlanoTelefonia GetPorCodigo(string codigo)
         {
-            throw new NotImplementedException();
+            return _planoTelefoniaRepository.GetPlanoPorCodigo(codigo);
         }
     }
 }
