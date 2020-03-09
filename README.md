@@ -3,7 +3,7 @@
 
 API de cadastro, atualização, remoção e listagem de planos de telefonia.
 
-1. Tecnoligias/Framework utilizados:
+1. Tecnologias/Framework utilizados:
   * Microsoft Visual Studio Community 2019
   * .NET Core 3.1
   * Entity Framework Core
